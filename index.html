@@ -109,13 +109,13 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 5rem 3rem 2.5rem;
+      padding: 6rem 3rem 2.5rem;
       position: relative;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute;
-      inset: 5%;
+      inset: 0;
       background-image: url('hero.jpg');
       background-size: cover;
       background-position: center;
@@ -137,7 +137,7 @@
       font-family: 'Syne', 'Noto Sans JP', sans-serif;
       font-weight: 300;
       font-size: clamp(2.8rem, 7vw, 8rem);
-      line-height: 1.05;
+      line-height: 1.1;
       letter-spacing: -0.01em;
       color: var(--charcoal);
       opacity: 0;
@@ -156,9 +156,9 @@
       flex-wrap: wrap;
     }
     .hero-cta-bottom {
-      margin-top: 1.8rem;
+      margin-top: 1.5rem;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
     }
     .hero-cta-bottom .btn-primary {
       position: relative;
@@ -624,8 +624,8 @@
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       .nav-right { gap: 1rem; }
-      .hero { padding: 5.5rem 1.5rem 2rem; }
-      .hero-title { font-size: clamp(2rem, 8.5vw, 2.8rem); }
+      .hero { padding: 6rem 1.5rem 2.5rem; }
+      .hero-title { font-size: clamp(2.1rem, 8.5vw, 2.9rem); }
       section { padding: 5rem 1.5rem; }
       .what-grid, .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .core-grid { grid-template-columns: 1fr; }
