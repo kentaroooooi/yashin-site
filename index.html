@@ -136,7 +136,7 @@
     .hero-title {
       font-family: 'Syne', 'Noto Sans JP', sans-serif;
       font-weight: 300;
-      font-size: clamp(2.8rem, 7vw, 8rem);
+      font-size: clamp(2.4rem, 4.6vw, 5.5rem);
       line-height: 1.1;
       letter-spacing: -0.01em;
       color: var(--charcoal);
@@ -144,9 +144,6 @@
       animation: fadeUp 1s 0.8s forwards;
     }
     .hero-title em { font-style: italic; color: var(--charcoal); }
-    @media (min-width: 769px) {
-      .hero-title br { display: none; }
-    }
     .hero-bottom {
       margin-top: auto;
       display: flex;
@@ -173,6 +170,90 @@
       color: rgba(31,31,31,0.72);
       opacity: 0;
       animation: fadeUp 1s 1.1s forwards;
+    }
+    /* 横長の画面（PC・iPad横向き）: 写真内ロゴの直下に 見出し → 説明 → ボタン を左揃えの一列で置く。
+       hero.jpg は横幅基準で拡大され上下中央で切り取られるため、
+       位置と文字サイズを vw 基準（縦は画面中央 50dvh 起点）にして写真に追従させる。 */
+    @media (orientation: landscape) {
+      .hero {
+        padding: calc(50vh - 7vw) 3rem 2.5rem 5.9vw;
+        padding-top: calc(50dvh - 7vw);
+      }
+      .hero-title { font-size: 2.9vw; }  /* 見出しの幅を写真内ロゴの幅に揃える */
+      .hero-title br { display: none; }
+      .hero-bottom { margin-top: 1.5vw; }
+      .hero-body { font-size: clamp(0.62rem, 0.9vw, 1.05rem); }
+      .hero-cta-bottom { margin-top: 1.6vw; }
+      .hero-cta-bottom .btn-primary { font-size: clamp(0.58rem, 0.78vw, 0.85rem); padding: 1.29em 3.14em; }
+      /* 英語は文字数が多いので、靴に掛からないよう少し詰める */
+      html[lang="en"] .hero-title { font-size: 2.3vw; }
+      html[lang="en"] .hero-cta-bottom .btn-primary { padding: 1.29em 1.7em; letter-spacing: 0.12em; }
+    }
+    /* 高さの低い横長画面（スマホ横向き）: 写真の下に文字を置く余地がないので、
+       左4割を文字、右6割を写真にした2列にする。写真の左端は背景色へぼかしてつなぐ。 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .hero {
+        justify-content: center;
+        background-color: #FDFDFD;
+        padding: 4rem 2rem 1.25rem;
+      }
+      .hero-bg {
+        inset: 0 0 0 40vw;
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 10%);
+        mask-image: linear-gradient(to right, transparent, #000 10%);
+      }
+      .hero-title { font-size: clamp(1.2rem, 2.9vw, 1.9rem); }
+      .hero-bottom { margin-top: 0.8rem; }
+      .hero-body { font-size: clamp(0.6rem, 1.3vw, 0.75rem); line-height: 1.8; }
+      .hero-cta-bottom { margin-top: 1rem; }
+      .hero-cta-bottom .btn-primary { font-size: 0.6rem; padding: 1.1em 2.4em; }
+      html[lang="en"] .hero-title { font-size: clamp(1.1rem, 2.6vw, 1.7rem); }
+      html[lang="en"] .hero-title br { display: inline; }
+      html[lang="en"] .hero-cta-bottom .btn-primary { padding: 1.1em 1.8em; }
+    }
+    /* 縦長の画面（スマホ・iPad縦向き）: 見出し → 写真（ロゴ＋靴） → 説明 → ボタン を
+       ひとかたまりにして画面の上下中央に置く。写真は横幅ぴったりに収め、ロゴと靴が切れないようにする。
+       写真の帯（上から 68vw〜114vw の範囲）を見出しと説明の間に流し込み、残りは文字の背面に広げる。 */
+    @media (orientation: portrait) {
+      .hero {
+        justify-content: center;
+        background-color: #FDFDFD;  /* 写真の端の色。写真が届かない上下の余白とつなぐ */
+        padding: 5.5rem 5.9vw 3rem; /* 左端を写真内ロゴの左端に揃える */
+      }
+      .hero-bg {
+        order: 2;
+        position: relative;
+        inset: auto;
+        flex: none;
+        height: 46vw;
+        margin: 0 -5.9vw;
+        background: none;
+      }
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        top: -68vw;
+        height: 177.68vw;  /* hero.jpg の縦横比 941:1672 */
+        background: url('hero.jpg') center top / 100% auto no-repeat;
+      }
+      .hero-title { order: 1; position: relative; z-index: 1; font-size: clamp(1.8rem, 8.2vw, 2.9rem); margin-bottom: 2vw; }
+      .hero-bottom { order: 3; position: relative; z-index: 1; margin-top: 1.5vh; }
+      .hero-body { font-size: min(0.78rem, 3.4vw); }  /* 幅の狭いスマホで3行目が折り返さないように */
+      .hero-cta-bottom { order: 4; position: relative; z-index: 1; margin-top: 1.75rem; }
+      html[lang="en"] .hero-title { font-size: clamp(1.5rem, 6.6vw, 2.4rem); }
+    }
+    /* iPad縦向きなど幅のある縦長画面: 見出しは1行、文字は画面幅に合わせて大きく */
+    @media (orientation: portrait) and (min-width: 600px) {
+      .hero-title { font-size: 5.4vw; }
+      html[lang="ja"] .hero-title br { display: none; }
+      html[lang="en"] .hero-title { font-size: 5vw; }
+      .hero-body { font-size: clamp(0.85rem, 1.75vw, 1.15rem); }
+      .hero-cta-bottom { margin-top: 2.6vw; }
+      .hero-cta-bottom .btn-primary { font-size: clamp(0.75rem, 1.4vw, 0.95rem); padding: 1.29em 3.14em; }
     }
     .hero-cta {
       margin-top: 3rem;
@@ -620,12 +701,15 @@
     }
 
     /* RESPONSIVE */
+    /* iPad幅: ナビのロゴとメニューが詰まらないよう間隔を狭める */
+    @media (max-width: 1000px) {
+      nav { padding-left: 2rem; padding-right: 2rem; }
+      .nav-links, .nav-right { gap: 1.4rem; }
+    }
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       .nav-right { gap: 1rem; }
-      .hero { padding: 6rem 1.5rem 2.5rem; }
-      .hero-title { font-size: clamp(2.1rem, 8.5vw, 2.9rem); }
       section { padding: 5rem 1.5rem; }
       .what-grid, .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .core-grid { grid-template-columns: 1fr; }
@@ -934,7 +1018,7 @@
       },
       en: {
         'nav-about':    'About',
-        'hero-title':   'New model.<br><em>Pre-orders opening soon.</em>',
+        'hero-title':   'New model. <br><em>Pre-orders opening soon.</em>',
         'hero-body':    'Fully custom speed skating boots.<br>Master craftsmanship × 3D printing.<br>Limited quantities for July 2027 delivery.',
         'hero-cta':     'Pre-orders opening soon',
         'scroll':       'Scroll',
