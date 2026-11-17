@@ -684,6 +684,8 @@
     .price-old { text-decoration: line-through; font-size: 0.45em; color: var(--muted); margin-right: 0.8rem; vertical-align: middle; }
     .preorder-deposit s { opacity: 0.6; margin-right: 0.3rem; }
 
+    .preorder-note a { color: rgba(250,249,246,0.6); text-decoration: underline; }
+    .preorder-note a:hover { color: var(--accent); }
     .btn-disabled { background: #4A525B; border-color: #4A525B; color: rgba(250,249,246,0.55); cursor: default; pointer-events: none; }
     .btn-disabled:hover { background: #4A525B; color: rgba(250,249,246,0.55); }
 
@@ -743,16 +745,16 @@
   <section class="hero" style="border-top:none;">
     <div class="hero-bg"></div>
 
-    <h1 class="hero-title" data-i18n="hero-title">新モデル<br><em>まもなく</em>予約開始</h1>
+    <h1 class="hero-title" data-i18n="hero-title">新モデル<br>予約<em>受付中</em></h1>
     <div class="hero-bottom">
       <p class="hero-body" data-i18n="hero-body">
         完全オーダーメイドのスピードスケートシューズ<br>
         職人監修 × 3Dプリント技術<br>
-        2027年7月納品分を数量限定で受け付けています。
+        初回は50足限定。2027年7月から順次お届けします。
       </p>
     </div>
     <div class="hero-cta-bottom">
-      <a href="#preorder" class="btn-primary" data-i18n="hero-cta">まもなく予約開始</a>
+      <a href="#preorder" class="btn-primary" data-i18n="hero-cta">予約する</a>
     </div>
   </section>
 
@@ -854,7 +856,7 @@
     <div class="label">Price</div>
     <div class="price-grid reveal">
       <div>
-        <div class="price-amount"><span class="price-old">¥220,000</span>¥198,000<small data-i18n="price-tax">先行申込割・税込</small></div>
+        <div class="price-amount">¥220,000<small data-i18n="price-tax">税込・送料別</small></div>
       </div>
       <ul class="price-list" data-i18n="price-list">
         <li>足型採取</li>
@@ -868,19 +870,20 @@
   <section id="preorder" class="preorder-section">
     <div class="label">Pre-order</div>
     <div class="reveal">
-      <div class="preorder-slots" data-i18n="po-slots">2027年7月シーズン開始分 — 数量限定</div>
-      <h2 class="preorder-title" data-i18n="po-title"><em>まもなく予約開始。</em></h2>
-      <p class="preorder-body" data-i18n="po-body">製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。代金のお支払いをもって枠を確保し、足型採取の日程をご案内します。</p>
+      <div class="preorder-slots" data-i18n="po-slots">初回受付 — 50足限定</div>
+      <h2 class="preorder-title" data-i18n="po-title"><em>予約受付中。</em></h2>
+      <p class="preorder-body" data-i18n="po-body">製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時に代金の半額をお支払いいただくことで枠を確保し、足型採取の日程をご案内します。残りの半額と送料は、制作着手時（2027年3月以降）にご請求します。</p>
       <div class="preorder-flow">
-        <div><span class="step">01</span><div class="flow-icon"><img src="icon-order.png" alt=""></div><h3 data-i18n="po-f1-title">お申し込み・お支払い</h3><p data-i18n="po-f1-desc">下のボタンから注文を行う。</p></div>
+        <div><span class="step">01</span><div class="flow-icon"><img src="icon-order.png" alt=""></div><h3 data-i18n="po-f1-title">ご注文・前金のお支払い</h3><p data-i18n="po-f1-desc">下のボタンからご注文いただき、代金の半額をお支払いいただきます。</p></div>
         <div><span class="step">02</span><div class="flow-icon"><img src="icon-schedule.png" alt=""></div><h3 data-i18n="po-f2-title">日程調整</h3><p data-i18n="po-f2-desc">足型採取の日程をメールでご案内します。</p></div>
-        <div><span class="step">03</span><div class="flow-icon"><img src="icon-make.png" alt=""></div><h3 data-i18n="po-f3-title">採取・製作</h3><p data-i18n="po-f3-desc">足型を採取し、設計・出力・仕上げを行います。</p></div>
-        <div><span class="step">04</span><div class="flow-icon"><img src="icon-deliver.png" alt=""></div><h3 data-i18n="po-f4-title">納品</h3><p data-i18n="po-f4-desc">2027年7月までにお届けします。</p></div>
+        <div><span class="step">03</span><div class="flow-icon"><img src="icon-make.png" alt=""></div><h3 data-i18n="po-f3-title">採取・製作</h3><p data-i18n="po-f3-desc">足型を採取します。制作着手時に、残りの半額と送料をご請求します。</p></div>
+        <div><span class="step">04</span><div class="flow-icon"><img src="icon-deliver.png" alt=""></div><h3 data-i18n="po-f4-title">納品</h3><p data-i18n="po-f4-desc">2027年7月から順次発送し、遅くとも8月末までにお届けします。</p></div>
       </div>
       <div class="preorder-cta">
-        <span class="btn-solid btn-disabled" data-stripe="PLACEHOLDER" data-i18n="po-cta">まもなく予約開始</span>
-        <span class="preorder-deposit" data-i18n="po-deposit"><s>¥220,000</s> 先行申込割 ¥198,000（税込）／全額前払い</span>
+        <a class="btn-solid" href="https://shop.yashin.jp/products/speed-skate-shoes" data-i18n="po-cta">注文する</a>
+        <span class="preorder-deposit" data-i18n="po-deposit">¥220,000（税込・送料別）／ご注文時に¥110,000、制作着手時に¥110,000と送料</span>
       </div>
+      <p class="preorder-note" data-i18n="po-note">キャンセルの条件は<a href="https://shop.yashin.jp/policies/refund-policy">返品・返金ポリシー</a>を、販売条件は<a href="https://shop.yashin.jp/policies/legal-notice">特定商取引法に基づく表記</a>をご確認ください。お届け先は日本国内に限ります。</p>
     </div>
   </section>
 
@@ -960,9 +963,9 @@
     const i18n = {
       ja: {
         'nav-about':    'About',
-        'hero-title':   '新モデル<br><em>まもなく</em>予約開始',
-        'hero-body':    '完全オーダーメイドのスピードスケートシューズ<br>職人監修 × 3Dプリント技術<br>2027年7月納品分を数量限定で受け付けています。',
-        'hero-cta':     'まもなく予約開始',
+        'hero-title':   '新モデル<br>予約<em>受付中</em>',
+        'hero-body':    '完全オーダーメイドのスピードスケートシューズ<br>職人監修 × 3Dプリント技術<br>初回は50足限定。2027年7月から順次お届けします。',
+        'hero-cta':     '予約する',
         'scroll':       'スクロール',
         'what-title':   'あなたが成長すれば、<br>理想の<em>一足</em>も変わる。',
         'what-body':    'あなたは成長していく。<br><br>あなたのシューズは、<br>その変化に追いついているか。<br><br>Yashinは、<br>その変化に応え続ける。',
@@ -988,21 +991,22 @@
         'pr2-desc':     '足型データをもとに、職人監修のもと内側構造とシェルを設計します。',
         'pr3-title':    '出力・仕上げ',
         'pr3-desc':     '3Dプリンターでシェルを出力し、職人が一足ずつ仕上げます。',
-        'price-tax':    '先行申込割・税込',
+        'price-tax':    '税込・送料別',
         'price-list':   '<li>足型採取</li><li>職人監修による設計</li><li>オーダーメイドシューズ本体</li>',
-        'po-slots':     '2027年7月シーズン開始分 — 数量限定',
-        'po-title':     '<em>まもなく予約開始。</em>',
-        'po-body':      '製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。代金のお支払いをもって枠を確保し、足型採取の日程をご案内します。',
-        'po-f1-title':  'お申し込み・お支払い',
-        'po-f1-desc':   '下のボタンから注文を行う。',
+        'po-slots':     '初回受付 — 50足限定',
+        'po-title':     '<em>予約受付中。</em>',
+        'po-body':      '製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時に代金の半額をお支払いいただくことで枠を確保し、足型採取の日程をご案内します。残りの半額と送料は、制作着手時（2027年3月以降）にご請求します。',
+        'po-f1-title':  'ご注文・前金のお支払い',
+        'po-f1-desc':   '下のボタンからご注文いただき、代金の半額をお支払いいただきます。',
         'po-f2-title':  '日程調整',
         'po-f2-desc':   '足型採取の日程をメールでご案内します。',
         'po-f3-title':  '採取・製作',
-        'po-f3-desc':   '足型を採取し、設計・出力・仕上げを行います。',
+        'po-f3-desc':   '足型を採取します。制作着手時に、残りの半額と送料をご請求します。',
         'po-f4-title':  '納品',
-        'po-f4-desc':   '2027年7月までにお届けします。',
-        'po-cta':       'まもなく予約開始',
-        'po-deposit':   '<s>¥220,000</s> 先行申込割 ¥198,000（税込）／全額前払い',
+        'po-f4-desc':   '2027年7月から順次発送し、遅くとも8月末までにお届けします。',
+        'po-cta':       '注文する',
+        'po-deposit':   '¥220,000（税込・送料別）／ご注文時に¥110,000、制作着手時に¥110,000と送料',
+        'po-note':      'キャンセルの条件は<a href="https://shop.yashin.jp/policies/refund-policy">返品・返金ポリシー</a>を、販売条件は<a href="https://shop.yashin.jp/policies/legal-notice">特定商取引法に基づく表記</a>をご確認ください。お届け先は日本国内に限ります。',
         'prod-main-label': '側面の作り',
         'det2': '内側の構造',
         'det3': 'ブレード取付部',
@@ -1018,9 +1022,9 @@
       },
       en: {
         'nav-about':    'About',
-        'hero-title':   'New model. <br><em>Pre-orders opening soon.</em>',
-        'hero-body':    'Fully custom speed skating boots.<br>Master craftsmanship × 3D printing.<br>Limited quantities for July 2027 delivery.',
-        'hero-cta':     'Pre-orders opening soon',
+        'hero-title':   'New model. <br><em>Pre-orders now open.</em>',
+        'hero-body':    'Fully custom speed skating boots.<br>Master craftsmanship × 3D printing.<br>First batch limited to 50 pairs. Delivery from July 2027.',
+        'hero-cta':     'Pre-order',
         'scroll':       'Scroll',
         'what-title':   'As you grow,<br>your ideal fit <em>changes.</em>',
         'what-body':    'Yashin evolves with you.',
@@ -1046,21 +1050,22 @@
         'pr2-desc':     'The inner structure and shell are designed from your foot data, under craftsman supervision.',
         'pr3-title':    'Print & finish',
         'pr3-desc':     'The shell is 3D-printed and finished by hand, one pair at a time.',
-        'price-tax':    'pre-order price, tax included',
+        'price-tax':    'tax included, shipping not included',
         'price-list':   '<li>Foot casting</li><li>Craftsman-supervised design</li><li>Custom boots</li>',
-        'po-slots':     'For the season starting July 2027 — limited quantities',
-        'po-title':     '<em>Pre-orders opening soon.</em>',
-        'po-body':      'Production is handled by a craftsman and a small team, so the number of pairs we can make is limited. Your payment secures a slot, and we will contact you to schedule your foot casting.',
-        'po-f1-title':  'Order & pay',
-        'po-f1-desc':   'Place your order from the button below.',
+        'po-slots':     'First batch — limited to 50 pairs',
+        'po-title':     '<em>Pre-orders now open.</em>',
+        'po-body':      'Production is handled by a craftsman and a small team, so the number of pairs we can make is limited. Paying half of the price at order secures your slot, and we will contact you to schedule your foot casting. The remaining half and shipping are charged when production starts (March 2027 or later).',
+        'po-f1-title':  'Order & pay the deposit',
+        'po-f1-desc':   'Order from the button below and pay half of the price.',
         'po-f2-title':  'Scheduling',
         'po-f2-desc':   'We email you to arrange your foot casting.',
         'po-f3-title':  'Casting & production',
-        'po-f3-desc':   'We cast your feet, then design, print and finish your boots.',
+        'po-f3-desc':   'We cast your feet. When production starts, we charge the remaining half and shipping.',
         'po-f4-title':  'Delivery',
-        'po-f4-desc':   'Delivered by July 2027.',
-        'po-cta':       'Pre-orders opening soon',
-        'po-deposit':   '<s>¥220,000</s> ¥198,000 tax incl. — pre-order price, paid in full at order',
+        'po-f4-desc':   'Shipping starts in July 2027; every pair is delivered by the end of August.',
+        'po-cta':       'Order now',
+        'po-deposit':   '¥220,000 (tax incl., shipping not incl.) — ¥110,000 at order, ¥110,000 plus shipping when production starts',
+        'po-note':      'See the <a href="https://shop.yashin.jp/policies/refund-policy">refund policy</a> for cancellation terms and the <a href="https://shop.yashin.jp/policies/legal-notice">legal notice</a> for sales terms (both in Japanese). Checkout is in Japanese, and we currently ship within Japan only.',
         'prod-main-label': 'Side profile',
         'det2': 'Interior structure',
         'det3': 'Blade mount',
