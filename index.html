@@ -564,6 +564,20 @@
     /* ── PRICE ── */
     .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; border: 1px solid var(--border); background: var(--white); padding: 3rem; }
     .price-amount { font-family: 'Syne', sans-serif; font-weight: 400; font-size: clamp(2.6rem, 5vw, 4rem); color: var(--charcoal); line-height: 1.1; font-feature-settings: 'lnum' 1; font-variant-numeric: lining-nums; }
+    .price-grid { align-items: center; }
+    .price-row { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .price-cell { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 1rem; }
+    .price-amount--base { font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--muted); }
+    .price-cell:last-child .price-amount { font-size: clamp(2.6rem, 5vw, 4rem); }
+    .price-cap { font-family: 'DM Mono', 'Noto Sans JP', monospace; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--muted); }
+    .price-arrow { display: flex; }
+    .price-arrow-line { display: none; }
+    .price-pill { font-family: 'DM Mono', 'Noto Sans JP', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--charcoal); background: var(--accent); padding: 0.45rem 0.9rem; border-radius: 999px; white-space: nowrap; }
+    .price-pill::before { content: '↓'; margin-right: 0.5rem; }
+    .price-tax { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 1.4rem; }
+    @media (max-width: 900px) {
+      .price-cell:last-child .price-amount { font-size: clamp(2.6rem, 11vw, 3.4rem); }
+    }
     .price-amount small { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); display: block; margin-top: 0.8rem; }
     .price-list { list-style: none; display: flex; flex-direction: column; }
     .price-list li { display: grid; grid-template-columns: 1rem 1fr; gap: 1rem; font-family: 'DM Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--text); padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
@@ -855,8 +869,19 @@
   <section id="price">
     <div class="label">Price</div>
     <div class="price-grid reveal">
-      <div>
-        <div class="price-amount">¥220,000<small data-i18n="price-tax">税込・送料別</small></div>
+      <div class="price-main">
+        <div class="price-row">
+          <div class="price-cell">
+            <div class="price-amount price-amount--base">¥220,000</div>
+            <div class="price-cap" data-i18n="price-cap-two">二回払い</div>
+          </div>
+          <div class="price-arrow"><span class="price-arrow-line" aria-hidden="true"></span><span class="price-pill" data-i18n="price-full">一括払いで5,000円引き</span><span class="price-arrow-line price-arrow-line--head" aria-hidden="true"></span></div>
+          <div class="price-cell">
+            <div class="price-amount">¥215,000</div>
+            <div class="price-cap" data-i18n="price-cap-full">一括払い</div>
+          </div>
+        </div>
+        <div class="price-tax" data-i18n="price-tax">税込・送料別</div>
       </div>
       <ul class="price-list" data-i18n="price-list">
         <li>足型採取</li>
@@ -872,16 +897,16 @@
     <div class="reveal">
       <div class="preorder-slots" data-i18n="po-slots">初回受付 — 50足限定</div>
       <h2 class="preorder-title" data-i18n="po-title"><em>まもなく予約開始。</em></h2>
-      <p class="preorder-body" data-i18n="po-body">製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時のお支払いで枠を確保し、足型採取の日程をご案内します。お支払いは、半額ずつの二回払いと、5,000円引きの一括払いからお選びいただけます。</p>
+      <p class="preorder-body" data-i18n="po-body">製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時のお支払いで枠を確保し、足型採取の日程をご案内します。お支払いは、一括払いと、半額ずつの二回払いからお選びいただけます。</p>
       <div class="preorder-flow">
-        <div><span class="step">01</span><div class="flow-icon"><img src="icon-order.png" alt=""></div><h3 data-i18n="po-f1-title">ご注文・お支払い</h3><p data-i18n="po-f1-desc">受付開始後、ショップからご注文いただき、二回払いまたは一括払いでお支払いいただきます。</p></div>
+        <div><span class="step">01</span><div class="flow-icon"><img src="icon-order.png" alt=""></div><h3 data-i18n="po-f1-title">ご注文・お支払い</h3><p data-i18n="po-f1-desc">受付開始後、ショップからご注文いただき、一括払いでお支払いいただきます。二回払いもお選びいただけます。</p></div>
         <div><span class="step">02</span><div class="flow-icon"><img src="icon-schedule.png" alt=""></div><h3 data-i18n="po-f2-title">日程調整</h3><p data-i18n="po-f2-desc">足型採取の日程をメールでご案内します。</p></div>
         <div><span class="step">03</span><div class="flow-icon"><img src="icon-make.png" alt=""></div><h3 data-i18n="po-f3-title">採取・製作</h3><p data-i18n="po-f3-desc">足型を採取します。二回払いの場合は、制作着手時に残金と送料をご請求します。</p></div>
         <div><span class="step">04</span><div class="flow-icon"><img src="icon-deliver.png" alt=""></div><h3 data-i18n="po-f4-title">納品</h3><p data-i18n="po-f4-desc">2027年7月から順次発送し、遅くとも8月末までにお届けします。</p></div>
       </div>
       <div class="preorder-cta">
         <a class="btn-solid" href="https://shop.yashin.jp/products/speed-skate-shoes" data-i18n="po-cta">商品ページを見る</a>
-        <span class="preorder-deposit" data-i18n="po-deposit">¥220,000（税込・送料別）／二回払い：ご注文時に¥110,000、制作着手時に残金と送料／一括払い：¥215,000</span>
+        <span class="preorder-deposit" data-i18n="po-deposit">一括払い：¥215,000（税込・送料別、5,000円引き）／二回払い：¥220,000（ご注文時に¥110,000、制作着手時に残金と送料）</span>
       </div>
       <p class="preorder-note" data-i18n="po-note">キャンセルの条件は<a href="https://shop.yashin.jp/policies/refund-policy">返品・返金ポリシー</a>を、販売条件は<a href="https://shop.yashin.jp/policies/legal-notice">特定商取引法に基づく表記</a>をご確認ください。お届け先は日本国内に限ります。</p>
     </div>
@@ -992,12 +1017,15 @@
         'pr3-title':    '出力・仕上げ',
         'pr3-desc':     '3Dプリンターでシェルを出力し、職人が一足ずつ仕上げます。',
         'price-tax':    '税込・送料別',
+        'price-full':   '一括払いで5,000円引き',
+        'price-cap-two': '二回払い',
+        'price-cap-full': '一括払い',
         'price-list':   '<li>足型採取</li><li>職人監修による設計</li><li>オーダーメイドシューズ本体</li>',
         'po-slots':     '初回受付 — 50足限定',
         'po-title':     '<em>まもなく予約開始。</em>',
-        'po-body':      '製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時のお支払いで枠を確保し、足型採取の日程をご案内します。お支払いは、半額ずつの二回払いと、5,000円引きの一括払いからお選びいただけます。',
+        'po-body':      '製造は職人と少数のチームで行うため、お作りできる足数に限りがあります。ご注文時のお支払いで枠を確保し、足型採取の日程をご案内します。お支払いは、一括払いと、半額ずつの二回払いからお選びいただけます。',
         'po-f1-title':  'ご注文・お支払い',
-        'po-f1-desc':   '受付開始後、ショップからご注文いただき、二回払いまたは一括払いでお支払いいただきます。',
+        'po-f1-desc':   '受付開始後、ショップからご注文いただき、一括払いでお支払いいただきます。二回払いもお選びいただけます。',
         'po-f2-title':  '日程調整',
         'po-f2-desc':   '足型採取の日程をメールでご案内します。',
         'po-f3-title':  '採取・製作',
@@ -1005,7 +1033,7 @@
         'po-f4-title':  '納品',
         'po-f4-desc':   '2027年7月から順次発送し、遅くとも8月末までにお届けします。',
         'po-cta':       '商品ページを見る',
-        'po-deposit':   '¥220,000（税込・送料別）／二回払い：ご注文時に¥110,000、制作着手時に残金と送料／一括払い：¥215,000',
+        'po-deposit':   '一括払い：¥215,000（税込・送料別、5,000円引き）／二回払い：¥220,000（ご注文時に¥110,000、制作着手時に残金と送料）',
         'po-note':      'キャンセルの条件は<a href="https://shop.yashin.jp/policies/refund-policy">返品・返金ポリシー</a>を、販売条件は<a href="https://shop.yashin.jp/policies/legal-notice">特定商取引法に基づく表記</a>をご確認ください。お届け先は日本国内に限ります。',
         'prod-main-label': '側面の作り',
         'det2': '内側の構造',
@@ -1051,12 +1079,15 @@
         'pr3-title':    'Print & finish',
         'pr3-desc':     'The shell is 3D-printed and finished by hand, one pair at a time.',
         'price-tax':    'tax included, shipping not included',
+        'price-full':   '¥5,000 off when you pay in full',
+        'price-cap-two': 'Two installments',
+        'price-cap-full': 'Pay in full',
         'price-list':   '<li>Foot casting</li><li>Craftsman-supervised design</li><li>Custom boots</li>',
         'po-slots':     'First batch — limited to 50 pairs',
         'po-title':     '<em>Pre-orders opening soon.</em>',
-        'po-body':      'Production is handled by a craftsman and a small team, so the number of pairs we can make is limited. Your payment at order secures your slot, and we will contact you to schedule your foot casting. You can pay in two halves, or pay in full at order for ¥5,000 off.',
+        'po-body':      'Production is handled by a craftsman and a small team, so the number of pairs we can make is limited. Your payment at order secures your slot, and we will contact you to schedule your foot casting. You can pay in full at order or in two halves.',
         'po-f1-title':  'Order & pay',
-        'po-f1-desc':   'Once pre-orders open, order from our shop and pay in two installments or in full.',
+        'po-f1-desc':   'Once pre-orders open, order from our shop and pay in full. Two installments are also available.',
         'po-f2-title':  'Scheduling',
         'po-f2-desc':   'We email you to arrange your foot casting.',
         'po-f3-title':  'Casting & production',
@@ -1064,7 +1095,7 @@
         'po-f4-title':  'Delivery',
         'po-f4-desc':   'Shipping starts in July 2027; every pair is delivered by the end of August.',
         'po-cta':       'View product page',
-        'po-deposit':   '¥220,000 (tax incl., shipping not incl.) — two installments: ¥110,000 at order, balance plus shipping when production starts / pay in full: ¥215,000',
+        'po-deposit':   'Pay in full: ¥215,000 (tax incl., shipping not incl., ¥5,000 off) / two installments: ¥220,000 (¥110,000 at order, balance plus shipping when production starts)',
         'po-note':      'See the <a href="https://shop.yashin.jp/policies/refund-policy">refund policy</a> for cancellation terms and the <a href="https://shop.yashin.jp/policies/legal-notice">legal notice</a> for sales terms (both in Japanese). Checkout is in Japanese, and we currently ship within Japan only.',
         'prod-main-label': 'Side profile',
         'det2': 'Interior structure',
